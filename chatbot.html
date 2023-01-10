@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Customer Service Chatbot</title>
+	
+	<style>
+  #chatbot {
+    width: 50%;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  #chatbot-header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+
+  #chatbot-body {
+    padding: 20px;
+  }
+
+  #chatbot-messages {
+    height: 300px;
+    overflow-y: scroll;
+  }
+
+  #chatbot-messages .message {
+    margin-bottom: 20px;
+  }
+
+  #chatbot-messages .message.user {
+    text-align: right;
+  }
+
+  #chatbot-messages .message.chatbot {
+    text-align: left;
+  }
+
+  #chatbot-input {
+    display: flex;
+    align-items: center;
+  }
+
+  #chatbot-text-input {
+    flex-grow: 1;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+  }
+
+  #chatbot-send-button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+  }
+</style>
+
+	
+  </head>
+<body>
+    <h1>Customer Service Chatbot</h1>
+    <p>Welcome to our customer service chatbot. How can we help you today?</p>
+    <form id="chatbot-form">
+      <input type="text" id="inquiry" placeholder="Type your question here">
+      <button type="submit">Submit</button>
+    </form>
+    <div id="response"></div>
+    <script>
+      // Set up form submission handler
+      const form = document.getElementById('chatbot-form');
+      form.onsubmit = function(event) {
+        // Prevent form submission
+        event.preventDefault();
+        
+        // Get user's inquiry
+        const inquiry = document.getElementById('inquiry').value;
+        
+        // Determine response
+        let response = '';
+        if (inquiry.toLowerCase().includes('return')) {
+          response = 'Please visit our returns page for information on how to return a product: www.ourstore.com/returns';
+        } else if (inquiry.toLowerCase().includes('shipping')) {
+          response = 'Standard shipping is free on all orders. Your order will arrive within 3-5 business days.';
+        } else if (inquiry.toLowerCase().includes('promo')) {
+          response = 'Sign up for our email list to receive notifications about promotions and sales: www.ourstore.com/signup';
+        } else {
+          response = 'We apologize, but we could not understand your question. Please try rephrasing it.';
+        }
+        
+        // Display response
+        const responseContainer = document.getElementById('response');
+        responseContainer.innerHTML = response;
+      };
+    </script>
+  </body>
+</html>
